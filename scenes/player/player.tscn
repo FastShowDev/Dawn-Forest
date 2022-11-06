@@ -9,47 +9,11 @@
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 6, 15.5 )
 
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 21.5, 8.5 )
-
 [sub_resource type="Animation" id=1]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Texture:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("AttackArea/Collision:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("AttackArea/Collision:shape")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ SubResource( 8 ) ]
-}
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 16, 8.5 )
 
 [sub_resource type="Animation" id=9]
 resource_name = "attack_left"
@@ -209,6 +173,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:collision_layer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -374,6 +350,8 @@ tracks/1/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource( 2 )
 jump_speed = -140
 player_gravity = 350
@@ -385,6 +363,7 @@ wall_impulse_speed = 500
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 11
+frame = 48
 script = ExtResource( 3 )
 animation = NodePath("../Animation")
 player = NodePath("..")
@@ -419,22 +398,26 @@ drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 
 [node name="CollisionArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
 
 [node name="Collision" type="CollisionShape2D" parent="CollisionArea"]
-visible = false
 position = Vector2( -1, 12.5 )
 shape = SubResource( 7 )
 
 [node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
 
 [node name="Collision" type="CollisionShape2D" parent="AttackArea"]
-visible = false
-position = Vector2( -6.5, 5.5 )
+position = Vector2( -3, 10.5 )
 shape = SubResource( 8 )
+disabled = true
 
 [node name="WallRay" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 5.2, 0 )
+collision_mask = 3
 
 [node name="Light" type="Light2D" parent="."]
 texture = ExtResource( 4 )
