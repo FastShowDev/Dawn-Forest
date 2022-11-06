@@ -123,6 +123,13 @@ damage_test={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Tile"
+2d_physics/layer_2="SlideTile"
+2d_physics/layer_3="Player"
+2d_physics/layer_4="Enemy"
+
 [mono]
 
 project/assembly_name="Dawn-Forest"
