@@ -390,7 +390,7 @@ animation = NodePath("../Animation")
 player = NodePath("..")
 attack_collision = NodePath("../AttackArea/Collision")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( -1, 12.5 )
 shape = SubResource( 7 )
@@ -418,6 +418,13 @@ limit_top = 0
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 
+[node name="CollisionArea" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="CollisionArea"]
+visible = false
+position = Vector2( -1, 12.5 )
+shape = SubResource( 7 )
+
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="Collision" type="CollisionShape2D" parent="AttackArea"]
@@ -442,5 +449,11 @@ anims/light_animation = SubResource( 14 )
 [node name="Stats" type="Node" parent="."]
 script = ExtResource( 5 )
 player = NodePath("..")
+collision_area = NodePath("../CollisionArea")
+
+[node name="Invencibility" type="Timer" parent="Stats"]
+one_shot = true
 
 [connection signal="animation_finished" from="Animation" to="Texture" method="_on_Animation_animation_finished"]
+[connection signal="area_entered" from="CollisionArea" to="Stats" method="_on_CollisionArea_area_entered"]
+[connection signal="timeout" from="Stats/Invencibility" to="Stats" method="_on_Invencibility_timeout"]
