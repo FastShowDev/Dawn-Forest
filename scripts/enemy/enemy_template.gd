@@ -25,15 +25,17 @@ func _physics_process(delta: float) -> void:
 	texture.animate(velocity)
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
+	
+	
 func gravity(delta: float) -> void:
 	velocity.y += delta * gravity_speed
 
 
 func move_behavior() -> void:
 	if player_ref != null:
-		var distance: Vector2 = player_ref.global_position - self.global.position
+		var distance: Vector2 = player_ref.global_position - self.global_position
 		var direction: Vector2 = distance.normalized()
-		
+	
 		if abs(distance.x) <= proximity_threshold:
 			velocity.x = 0
 			can_attack = true
