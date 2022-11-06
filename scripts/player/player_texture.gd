@@ -37,7 +37,7 @@ func action_behavior() -> void:
 	if player.attacking and normal_attack:
 		animation.play("attack" + suffix)
 	elif player.defending and shield_off:
-		animation.play("shiled")
+		animation.play("shield")
 		shield_off = false
 	elif player.crouching and crouching_off:
 		animation.play("crouch")
