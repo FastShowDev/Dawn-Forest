@@ -396,6 +396,7 @@ cast_to = Vector2( 5.2, 0 )
 [node name="Light" type="Light2D" parent="."]
 texture = ExtResource( 4 )
 texture_scale = 0.25
+color = Color( 1, 1, 2, 1 )
 energy = 0.6
 
 [node name="Animation" type="AnimationPlayer" parent="Light"]
