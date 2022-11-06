@@ -35,20 +35,27 @@ func _physics_process(delta: float):
 	
 func horizontal_movement_env() -> void:
 	var input_direction: float = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	
+	if can_track_input == false or attacking:
+		velocity.x = 0
+		return
+	
 	velocity.x = input_direction * speed
-
-
-func animate(velocity: Vector2) -> void:
-	player_sprite.animate(velocity)
 	
 	
 func vertical_moviment_env():
 	#Verifica se o player está no chão e reseta o jump_count
 	if is_on_floor():
 		jump_count = 0
-	if Input.is_action_just_pressed("jump") and jump_count < 2:
+		
+	var jump_condition: bool = can_track_input and not attacking
+	if Input.is_action_just_pressed("jump") and jump_count < 2 and jump_condition:
 		jump_count += 1
 		velocity.y = jump_speed
+
+
+func animate(velocity: Vector2) -> void:
+	player_sprite.animate(velocity)
 
 
 func actions_env() -> void:
