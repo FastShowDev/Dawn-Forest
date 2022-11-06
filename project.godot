@@ -8,6 +8,43 @@
 
 config_version=4
 
+<<<<<<< HEAD
+=======
+_global_script_classes=[ {
+"base": "ParallaxBackground",
+"class": "Background",
+"language": "GDScript",
+"path": "res://scripts/enviroment/background.gd"
+}, {
+"base": "Node2D",
+"class": "Lvel",
+"language": "GDScript",
+"path": "res://scripts/management/level.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://scripts/player/player.gd"
+}, {
+"base": "Node",
+"class": "PlayerStats",
+"language": "GDScript",
+"path": "res://scripts/player/player_stats.gd"
+}, {
+"base": "Sprite",
+"class": "PlayerTexture",
+"language": "GDScript",
+"path": "res://scripts/player/player_texture.gd"
+} ]
+_global_script_class_icons={
+"Background": "",
+"Lvel": "",
+"Player": "",
+"PlayerStats": "",
+"PlayerTexture": ""
+}
+
+>>>>>>> 46e320ca70b6f0c040388f1f45b8d5ec44f2be04
 [application]
 
 config/name="Dawn-Forest"
