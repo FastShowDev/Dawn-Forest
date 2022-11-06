@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Dawn-Forest"
-run/main_scene="res://scenes/player/player.tscn"
+run/main_scene="res://scenes/management/level.tscn"
 config/icon="res://icon.png"
 
 [display]
