@@ -404,7 +404,7 @@ energy = 0.6
 autoplay = "light_animation"
 anims/light_animation = SubResource( 14 )
 
-[node name="Node" type="Node" parent="."]
+[node name="Stats" type="Node" parent="."]
 script = ExtResource( 5 )
 
 [connection signal="animation_finished" from="Animation" to="Texture" method="_on_Animation_animation_finished"]
