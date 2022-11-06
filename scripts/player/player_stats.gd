@@ -22,7 +22,7 @@ var current_exp: int = 0
 var max_mana: int
 var max_health: int
 
-var leve: int = 1
+var level: int = 1
 var level_dict: Dictionary = {
 	"1": 25,
 	"2": 33,
@@ -41,3 +41,23 @@ func _ready():
 	
 	current_health = base_health + bonus_health
 	max_health = current_health
+
+
+func update_exp(value: int) -> void:
+	current_exp += value
+	if current_exp >= level_dict[str(level)] and level < 9:
+		var leftover: int = current_exp - level_dict[str(level)]
+		current_exp = leftover
+		on_level_up()
+		level += 1
+	elif current_exp >= level_dict[str(level)] and level == 9:
+		current_exp = level_dict[str(level)]
+
+
+func on_level_up() -> void:
+	base_health += 2
+	base_mana	+= 2
+	base_attack += 1
+	current_mana = base_mana + bonus_mana
+	current_health = base_health + bonus_health
+
