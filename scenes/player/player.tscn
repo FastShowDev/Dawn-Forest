@@ -174,6 +174,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:collision_layer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "fall"
@@ -351,7 +363,7 @@ wall_impulse_speed = 500
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 11
-frame = 15
+frame = 48
 script = ExtResource( 3 )
 animation = NodePath("../Animation")
 player = NodePath("..")

@@ -108,11 +108,10 @@ func _process(_delta: float) -> void:
 
 func _on_CollisionArea_area_entered(area):
 	if area.name == "EnemyAttackArea":
-		update_health("Decrease", 3)
-		#update_health("Decrease", area.damage)
+		update_health("Decrease", area.damage)
 		collision_area.set_deferred("monitoring", false)
-		#invecibility_timer.start(area.invencibility_timer)
-		invecibility_timer.start(2)
+		invecibility_timer.start(area.invencibility_time)
+
 
 func _on_Invencibility_timeout():
 	collision_area.set_deferred("monitoring", true)
