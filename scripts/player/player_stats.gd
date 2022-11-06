@@ -61,3 +61,25 @@ func on_level_up() -> void:
 	current_mana = base_mana + bonus_mana
 	current_health = base_health + bonus_health
 
+
+func update_health(type: String, value: int) -> void:
+	match type:
+		"Increase":
+			current_health += value
+			if current_health >= max_health:
+				current_health = max_health
+		"Decrease":
+			verify_shield(value)
+			if current_health <= 0:
+				pass #Death
+			else:
+				pass #Damage
+
+func verify_shield(value: int) -> void:
+	if shielding:
+		if base_defense + bonus_defense >= value:
+			return
+		var damage: int = abs((base_defense + bonus_defense) - value)
+		current_health -= damage
+	else:
+		current_health -= value
