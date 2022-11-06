@@ -18,14 +18,16 @@ func _physics_process(delta: float):
 	vertical_moviment_env()
 	gravity(delta)
 	
-	animate()
+	velocity = move_and_slide(velocity, Vector2.UP)
+	animate(velocity)
+	#print(velocity.y)
 	
 func horizontal_movement_env() -> void:
 	var input_direction: float = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	velocity.x = input_direction * speed
-	velocity = move_and_slide(velocity, Vector2.UP)
 
-func animate() -> void:
+
+func animate(velocity: Vector2) -> void:
 	player_sprite.animate(velocity)
 	
 func vertical_moviment_env():
