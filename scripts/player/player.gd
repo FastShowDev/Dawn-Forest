@@ -8,7 +8,16 @@ onready var player_sprite: Sprite = get_node("Texture")
 var velocity: Vector2
 export(int) var speed = 100
 var jump_count: int = 0
+
+
+#Flags
 var landing: bool = false
+var attacking: bool = false
+var defending: bool = false
+var crouching: bool = false
+
+#Flag permisions:
+var can_track_input: bool = false
 
 export(int) var jump_speed
 export(int) var player_gravity
@@ -16,11 +25,13 @@ export(int) var player_gravity
 func _physics_process(delta: float):
 	horizontal_movement_env()
 	vertical_moviment_env()
+	actions_env()
 	gravity(delta)
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 	animate(velocity)
 	#print(velocity.y)
+	
 	
 func horizontal_movement_env() -> void:
 	var input_direction: float = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -30,6 +41,7 @@ func horizontal_movement_env() -> void:
 func animate(velocity: Vector2) -> void:
 	player_sprite.animate(velocity)
 	
+	
 func vertical_moviment_env():
 	#Verifica se o player está no chão e reseta o jump_count
 	if is_on_floor():
@@ -37,6 +49,36 @@ func vertical_moviment_env():
 	if Input.is_action_just_pressed("jump") and jump_count < 2:
 		jump_count += 1
 		velocity.y = jump_speed
+
+
+func actions_env() -> void:
+	attack()
+	crouch()
+	defense()
+
+
+func attack() -> void:
+	var attack_condition: bool = not attacking and not crouching and not defending
+	if Input.is_action_just_pressed("attack") and attack_condition and is_on_floor():
+		attacking = true
+
+
+func crouch() -> void:
+	if Input.is_action_pressed("crouch") and is_on_floor() and not defending:
+		crouching = true
+		can_track_input = false
+	elif not defending:
+		crouching = false
+		can_track_input = true
+
+func defense() -> void:
+	if Input.is_action_pressed("defense") and is_on_floor() and not crouching:
+		defending = true
+		can_track_input = false
+	elif not crouching:
+		defending = false
+		can_track_input = true
+
 
 func gravity(delta: float) -> void:
 	velocity.y += delta * player_gravity
