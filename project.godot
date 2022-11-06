@@ -22,12 +22,12 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "EnemyTemplate",
 "language": "GDScript",
-"path": "res://scenes/enemy/enemy_template.gd"
+"path": "res://scripts/enemy/enemy_template.gd"
 }, {
 "base": "Sprite",
 "class": "EnemyTexture",
 "language": "GDScript",
-"path": "res://scenes/enemy/enemy_texture.gd"
+"path": "res://scripts/enemy/enemy_texture.gd"
 }, {
 "base": "Node2D",
 "class": "Lvel",
@@ -48,6 +48,11 @@ _global_script_classes=[ {
 "class": "PlayerTexture",
 "language": "GDScript",
 "path": "res://scripts/player/player_texture.gd"
+}, {
+"base": "EnemyTexture",
+"class": "WhaleTexture",
+"language": "GDScript",
+"path": "res://scripts/enemy/whale/whale_texture.gd"
 } ]
 _global_script_class_icons={
 "Background": "",
@@ -57,7 +62,8 @@ _global_script_class_icons={
 "Lvel": "",
 "Player": "",
 "PlayerStats": "",
-"PlayerTexture": ""
+"PlayerTexture": "",
+"WhaleTexture": ""
 }
 
 [application]
