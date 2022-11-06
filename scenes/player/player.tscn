@@ -312,8 +312,11 @@ tracks/0/keys = {
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
-jump_speed = -175
+jump_speed = -140
 player_gravity = 350
+wall_jump_speed = -150
+wall_gravity = 115
+wall_impulse_speed = 500
 
 [node name="Texture" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -352,6 +355,7 @@ drag_margin_v_enabled = true
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="Collision" type="CollisionShape2D" parent="AttackArea"]
+visible = false
 position = Vector2( -6.5, 5.5 )
 shape = SubResource( 8 )
 
