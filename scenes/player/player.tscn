@@ -9,47 +9,11 @@
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 6, 15.5 )
 
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 21.5, 8.5 )
-
 [sub_resource type="Animation" id=1]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Texture:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("AttackArea/Collision:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("AttackArea/Collision:shape")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ SubResource( 8 ) ]
-}
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 16, 8.5 )
 
 [sub_resource type="Animation" id=9]
 resource_name = "attack_left"
@@ -387,6 +351,7 @@ wall_impulse_speed = 500
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 11
+frame = 15
 script = ExtResource( 3 )
 animation = NodePath("../Animation")
 player = NodePath("..")
@@ -433,8 +398,9 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="Collision" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2( -6.5, 5.5 )
+position = Vector2( -3, 10.5 )
 shape = SubResource( 8 )
+disabled = true
 
 [node name="WallRay" type="RayCast2D" parent="."]
 enabled = true

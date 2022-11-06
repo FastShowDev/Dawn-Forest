@@ -31,4 +31,6 @@ func _on_Animation_animation_finished(anim_name):
 			enemy.set_physics_process(true)
 		"dead":
 			enemy.kill_enemy()
+		"kill":
+			enemy.queue_free()
 
