@@ -1,6 +1,9 @@
 extends Node
 class_name PlayerStats
 
+#References
+export(NodePath) onready var player = get_node(player) as KinematicBody2D
+
 var shielding: bool = false
 
 var base_health: int = 15
@@ -71,9 +74,10 @@ func update_health(type: String, value: int) -> void:
 		"Decrease":
 			verify_shield(value)
 			if current_health <= 0:
-				pass #Death
+				player.dead = true
 			else:
-				pass #Damage
+				player.on_hit = true
+				player.attacking = false
 
 func verify_shield(value: int) -> void:
 	if shielding:

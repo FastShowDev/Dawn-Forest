@@ -4,6 +4,7 @@ class_name Player
 #References:
 onready var player_sprite: Sprite = get_node("Texture")
 onready var wall_ray: RayCast2D = get_node("WallRay")
+onready var stats: Node = get_node("Stats")
 
 #Player physics:
 var velocity: Vector2
@@ -24,6 +25,9 @@ var on_wall: bool = false
 var attacking: bool = false
 var defending: bool = false
 var crouching: bool = false
+
+var on_hit: bool = false
+var dead: bool = false
 
 var can_track_input: bool = false
 var not_on_wall: bool = true
@@ -85,18 +89,22 @@ func attack() -> void:
 func crouch() -> void:
 	if Input.is_action_pressed("crouch") and is_on_floor() and not defending:
 		crouching = true
+		stats.shielding = false
 		can_track_input = false
 	elif not defending:
 		crouching = false
 		can_track_input = true
+		stats.shielding = false
 		player_sprite.crouching_off = true
 
 func defense() -> void:
 	if Input.is_action_pressed("defense") and is_on_floor() and not crouching:
 		defending = true
 		can_track_input = false
+		stats.shielding = true
 	elif not crouching:
 		defending = false
+		stats.shielding = false
 		can_track_input = true
 		player_sprite.shield_off = true
 
