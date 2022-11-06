@@ -8,8 +8,6 @@
 
 config_version=4
 
-<<<<<<< HEAD
-=======
 _global_script_classes=[ {
 "base": "ParallaxBackground",
 "class": "Background",
@@ -44,7 +42,6 @@ _global_script_class_icons={
 "PlayerTexture": ""
 }
 
->>>>>>> 46e320ca70b6f0c040388f1f45b8d5ec44f2be04
 [application]
 
 config/name="Dawn-Forest"
