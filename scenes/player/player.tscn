@@ -388,6 +388,7 @@ vframes = 11
 script = ExtResource( 3 )
 animation = NodePath("../Animation")
 player = NodePath("..")
+attack_collision = NodePath("../AttackArea/Collision")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
