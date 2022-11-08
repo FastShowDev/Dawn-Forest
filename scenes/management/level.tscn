@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://resources/floor.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/enviroment/background.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/enviroment/mask.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scripts/management/level.gd" type="Script" id=7]
+[ext_resource path="res://scenes/enemy/whale.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -21,6 +22,8 @@ script = ExtResource( 7 )
 [node name="Floor" type="TileMap" parent="LevelDesign"]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
+collision_layer = 3
+collision_mask = 0
 format = 1
 tile_data = PoolIntArray( 393216, 0, 0, 393217, 0, 1, 393218, 0, 1, 393219, 0, 1, 393220, 0, 1, 393221, 0, 1, 393222, 0, 1, 393223, 0, 2, 393227, 0, 0, 393228, 0, 1, 393229, 0, 1, 393230, 0, 1, 393231, 0, 2, 393235, 0, 0, 393236, 0, 1, 393237, 0, 1, 393238, 0, 1, 393239, 0, 1, 393240, 0, 2, 458752, 0, 131072, 458753, 0, 131073, 458754, 0, 131073, 458755, 0, 131073, 458756, 0, 131073, 458757, 0, 131073, 458758, 0, 131073, 458759, 0, 131074, 458763, 0, 131072, 458764, 0, 131073, 458765, 0, 131073, 458766, 0, 131073, 458767, 0, 131074, 458771, 0, 131072, 458772, 0, 131073, 458773, 0, 131073, 458774, 0, 131073, 458775, 0, 131073, 458776, 0, 131074, 655368, 0, 0, 655369, 0, 1, 655370, 0, 1, 655371, 0, 1, 655372, 0, 1, 655373, 0, 1, 655374, 0, 1, 655375, 0, 1, 655376, 0, 1, 655377, 0, 1, 655378, 0, 1, 655379, 0, 2, 720904, 0, 131072, 720905, 0, 131073, 720906, 0, 131073, 720907, 0, 131073, 720908, 0, 131073, 720909, 0, 131073, 720910, 0, 131073, 720911, 0, 131073, 720912, 0, 131073, 720913, 0, 131073, 720914, 0, 131073, 720915, 0, 131074 )
 
@@ -46,3 +49,8 @@ position = Vector2( 73, 132 )
 
 [node name="Enviroment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
+
+[node name="Enemy" type="Node2D" parent="."]
+
+[node name="Whale" parent="Enemy" instance=ExtResource( 8 )]
+position = Vector2( 232, 181 )
