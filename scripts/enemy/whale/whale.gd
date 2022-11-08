@@ -30,6 +30,7 @@ func _ready() -> void:
 		
 		"Whale Eye": [
 			"res://assets/item/resource/whale/whale_eye.png",
+			15,
 			"Resource",
 			{},
 			6
