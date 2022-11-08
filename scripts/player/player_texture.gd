@@ -78,7 +78,7 @@ func vertical_behavior(direction: Vector2) -> void:
 
 func horizontal_behavior(direction: Vector2) -> void:
 	if direction.x != 0:
-		animation.play("run")
+		animation.play("run" + suffix)
 	else:
 		animation.play("idle")
 	
