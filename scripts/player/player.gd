@@ -31,6 +31,7 @@ var dead: bool = false
 
 var can_track_input: bool = false
 var not_on_wall: bool = true
+var flipped: bool = false
 
 
 func _physics_process(delta: float):
@@ -62,6 +63,7 @@ func vertical_moviment_env():
 	var jump_condition: bool = can_track_input and not attacking
 	if Input.is_action_just_pressed("jump") and jump_count < 2 and jump_condition:
 		jump_count += 1
+		spawn_effect("res://scenes/effect/dust/jump_effect.tscn", Vector2(0,18), flipped)
 		if next_to_wall() and not is_on_floor():
 			velocity.y = wall_jump_speed
 			velocity.x += wall_impulse_speed * direction
@@ -134,3 +136,12 @@ func next_to_wall() -> bool:
 		not_on_wall = true
 		return false
 		
+
+func spawn_effect(effect_path: String, offset: Vector2, is_flipped: bool) -> void:
+	var effect_instance: EffectTemplate = load(effect_path).instance()
+	get_tree().root.call_deferred("add_child", effect_instance)
+	if is_flipped:
+		effect_instance.flip_h = true
+	effect_instance.global_position = self.global_position + offset
+	effect_instance.play()
+	
