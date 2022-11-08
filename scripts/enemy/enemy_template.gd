@@ -11,11 +11,12 @@ var can_attack: bool = false
 
 var velocity: Vector2
 var player_ref: Player = null
+var drop_list: Dictionary
 
-export(int) var speed
-export(int) var gravity_speed
-export(int) var proximity_threshold
-export(int) var raycast_default_position
+export(int) var speed #60
+export(int) var gravity_speed #350
+export(int) var proximity_threshold #15
+export(int) var raycast_default_position #-33
 
 
 func _physics_process(delta: float) -> void:
