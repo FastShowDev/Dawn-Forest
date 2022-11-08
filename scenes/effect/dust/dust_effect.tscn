@@ -34,4 +34,3 @@ animations = [ {
 [node name="DustEffect" instance=ExtResource( 1 )]
 frames = SubResource( 6 )
 animation = "idle"
-frame = 4
