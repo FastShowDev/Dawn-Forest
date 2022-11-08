@@ -102,9 +102,7 @@ func update_mana(type: String, value: int) -> void:
 			current_mana -= value 
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("damage_test"):
-		update_health("Decrease", 5)
-
+	pass
 
 func _on_CollisionArea_area_entered(area):
 	if area.name == "EnemyAttackArea":

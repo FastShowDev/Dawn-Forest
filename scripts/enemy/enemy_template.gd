@@ -88,11 +88,14 @@ func spawn_item_probability() -> void:
 			#Drop success!
 			var item_texture: StreamTexture = load(drop_list[key][0])
 			var item_info: Array = [
-									drop_list[key][0], #Item path
-									drop_list[key][2], #Type
-									drop_list[key][3], #Value
-									drop_list[key][4], #Sell value
-									1 #Amoutn of itens dropped
-									]
+				drop_list[key][0], #Item path
+				drop_list[key][2], #Type
+				drop_list[key][3], #Value
+				drop_list[key][4], #Sell value
+				1 #Amoutn of itens dropped
+			]
+			spawn_physic_item(key, item_texture, item_info)
+
+func spawn_physic_item(key: String, item_texture: StreamTexture, item_info: Array) -> void:
 	pass
 
