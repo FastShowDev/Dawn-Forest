@@ -6,6 +6,7 @@ signal game_over
 
 #Player information
 var normal_attack: bool = false
+var magic_attack: bool = false
 var shield_off: bool = false
 var crouching_off: bool = false
 
@@ -61,6 +62,8 @@ func action_behavior() -> void:
 		animation.play("wall_slide")
 	elif player.attacking and normal_attack:
 		animation.play("attack" + suffix)
+	elif player.attacking and magic_attack:
+		animation.play("spell_attack")
 	elif player.defending and shield_off:
 		animation.play("shield")
 		shield_off = false
@@ -108,3 +111,6 @@ func _on_Animation_animation_finished(anim_name: String):
 				animation.play("crouch")
 		"dead":
 			emit_signal("game_over")
+		"spell_attack":
+			magic_attack = false
+			player.attacking = false
