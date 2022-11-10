@@ -37,6 +37,7 @@ func verify_position(direction: Vector2) -> void:
 		suffix = "_right"
 		position = Vector2.ZERO
 		player.direction = -1
+		player.spell_offset = Vector2(100, -50)
 		player.flipped = false
 		player.wall_ray.cast_to = Vector2(5.5, 0)
 	elif direction.x < 0:
@@ -44,6 +45,7 @@ func verify_position(direction: Vector2) -> void:
 		suffix = "_left"
 		position = Vector2(-2, 0)
 		player.direction = 1
+		player.spell_offset = Vector2(-100, -50)
 		player.flipped = true
 		player.wall_ray.cast_to = Vector2(-7.5, 0)
 
