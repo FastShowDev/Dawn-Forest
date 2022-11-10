@@ -18,11 +18,21 @@ func _on_CollisionArea_area_entered(area):
 		var player_attack: int = player_stats.base_attack + player_stats.bonus_attack
 		print(player_attack)
 		update_health(player_attack)
-	pass # Replace with function body.
+		print("oi")
+	elif area is FireSpell:
+		update_health(area.spell_damage)
+		set_deferred("monitoring", false)
+		timer.start(invulnerability_timer)
+		print("Fogooo")
 
 func update_health(damage: int) -> void:
 	health -= damage
+	print("Vida atual do inimigo: " + str(health))
 	if health <= 0:
 		enemy.can_die = true
 		return
 	enemy.can_hit = true
+
+
+func _on_Timer_timeout():
+	set_deferred("monitoring", true)
