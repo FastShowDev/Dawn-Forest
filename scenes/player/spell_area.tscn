@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/effect/fireball/fire_ball_1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/effect/fireball/fire_ball_2.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/effect/fireball/fire_ball_3.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/effect/light.png" type="Texture" id=4]
+[ext_resource path="res://scripts/player/spell_area.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 10 )
@@ -112,6 +113,7 @@ tracks/3/keys = {
 }
 
 [node name="SpellArea" type="Area2D"]
+script = ExtResource( 5 )
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -136,3 +138,5 @@ energy = 0.0
 [node name="Animation" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
 anims/light_strength = SubResource( 3 )
+
+[connection signal="animation_finished" from="Animation" to="." method="_on_Animation_animation_finished"]
