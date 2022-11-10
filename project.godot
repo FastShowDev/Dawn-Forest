@@ -45,7 +45,7 @@ _global_script_classes=[ {
 "path": "res://scripts/enemy/enemy_texture.gd"
 }, {
 "base": "Node2D",
-"class": "Lvel",
+"class": "Level",
 "language": "GDScript",
 "path": "res://scripts/management/level.gd"
 }, {
@@ -87,7 +87,7 @@ _global_script_class_icons={
 "EnemyAttackArea": "",
 "EnemyTemplate": "",
 "EnemyTexture": "",
-"Lvel": "",
+"Level": "",
 "PhysicItem": "",
 "Player": "",
 "PlayerStats": "",
