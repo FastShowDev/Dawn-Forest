@@ -8,4 +8,4 @@ func _ready() -> void:
 	pass
 
 func on_game_over() -> void:
-	var reload: bool = get_tree().reload_current_scene()
+	var _reload: bool = get_tree().reload_current_scene()
