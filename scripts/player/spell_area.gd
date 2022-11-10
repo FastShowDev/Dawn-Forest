@@ -1,10 +1,11 @@
 extends Area2D
 class_name FireSpell
 
-var spell_damage: int
+var spell_damage: int = 5
 onready var animation: AnimationPlayer = get_node("Animation")
 
 func _ready() -> void:
+	spell_damage = 5
 	for children in get_children():
 		if children is Particles2D and children.name != "ExplosionParticles":
 			children.emitting = true

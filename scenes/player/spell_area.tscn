@@ -12,30 +12,6 @@ extents = Vector2( 50, 10 )
 
 [sub_resource type="Animation" id=2]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("ExplosionParticles:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("ExplosionParticles:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
-}
 
 [sub_resource type="Animation" id=3]
 resource_name = "light_strength"
@@ -118,7 +94,6 @@ collision_mask = 8
 script = ExtResource( 5 )
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 75 )
 shape = SubResource( 1 )
 
 [node name="FireBall" parent="." instance=ExtResource( 1 )]
@@ -137,10 +112,11 @@ one_shot = true
 
 [node name="SpellLight" type="Light2D" parent="."]
 texture = ExtResource( 4 )
-texture_scale = 0.6
-energy = 1.2
+texture_scale = 0.01
+energy = 0.0
 
 [node name="Animation" type="AnimationPlayer" parent="."]
+reset_on_save = false
 anims/RESET = SubResource( 2 )
 anims/light_strength = SubResource( 3 )
 
