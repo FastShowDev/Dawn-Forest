@@ -48,6 +48,8 @@ func _ready():
 	
 	current_health = base_health + bonus_health
 	max_health = current_health
+	
+	get_tree().call_group("bar_container", "init_bar", max_health, max_mana, level_dict[str(level)])
 
 
 func update_exp(value: int) -> void:
