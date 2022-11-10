@@ -6,7 +6,7 @@ onready var animation: AnimationPlayer = get_node("Animation")
 
 func _ready() -> void:
 	for children in get_children():
-		if children is Particles2D:
+		if children is Particles2D and children.name != "ExplosionParticles":
 			children.emitting = true
 	animation.play("light_strength")
 	
