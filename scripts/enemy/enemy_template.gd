@@ -14,6 +14,7 @@ var player_ref: Player = null
 var drop_list: Dictionary
 var drop_bonus: int = 1
 
+export(int) var enemy_exp #5
 export(int) var speed #60
 export(int) var gravity_speed #350
 export(int) var proximity_threshold #15
@@ -69,6 +70,7 @@ func verify_position() -> void:
 
 func kill_enemy() -> void:
 	animation.play("kill")
+	get_tree().call_group("player_stats", "update_exp", enemy_exp)
 	spawn_item_probability()
 
 func spawn_item_probability() -> void:

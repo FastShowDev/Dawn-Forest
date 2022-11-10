@@ -48,10 +48,13 @@ func _ready():
 	
 	current_health = base_health + bonus_health
 	max_health = current_health
+	
+	get_tree().call_group("bar_container", "init_bar", max_health, max_mana, level_dict[str(level)])
 
 
 func update_exp(value: int) -> void:
 	current_exp += value
+	get_tree().call_group("bar_container", "update_bar", "ExpBar", current_exp)
 	if current_exp >= level_dict[str(level)] and level < 9:
 		var leftover: int = current_exp - level_dict[str(level)]
 		current_exp = leftover
@@ -67,6 +70,12 @@ func on_level_up() -> void:
 	base_attack += 1
 	current_mana = base_mana + bonus_mana
 	current_health = base_health + bonus_health
+	
+	get_tree().call_group("bar_container", "update_bar", "ManaBar", current_mana)
+	get_tree().call_group("bar_container", "update_bar", "HealthBar", current_health)
+	
+	yield(get_tree().create_timer(0.2), "timeout")
+	get_tree().call_group("bar_container", "reset_exp_bar", level_dict[str(level)], current_exp)
 
 
 func update_health(type: String, value: int) -> void:
@@ -82,7 +91,9 @@ func update_health(type: String, value: int) -> void:
 			else:
 				player.on_hit = true
 				player.attacking = false
-
+				
+	get_tree().call_group("bar_container", "update_bar", "HealthBar", current_health)
+	
 func verify_shield(value: int) -> void:
 	if shielding:
 		if base_defense + bonus_defense >= value:
@@ -100,10 +111,9 @@ func update_mana(type: String, value: int) -> void:
 				current_mana = max_mana
 		"Decrease":
 			current_mana -= value 
-
-func _process(_delta: float) -> void:
-	pass
-
+	get_tree().call_group("bar_container", "update_bar", "ManaBar", current_mana)
+	
+	
 func _on_CollisionArea_area_entered(area):
 	if area.name == "EnemyAttackArea":
 		update_health("Decrease", area.damage)

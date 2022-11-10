@@ -8,5 +8,5 @@ func _on_DetectionArea_body_entered(body: Player) -> void:
 	enemy.player_ref = body
 
 
-func _on_DetectionArea_body_exited(body):
+func _on_DetectionArea_body_exited(_body):
 	enemy.player_ref = null
