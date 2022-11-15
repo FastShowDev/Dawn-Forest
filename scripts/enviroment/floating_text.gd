@@ -56,7 +56,7 @@ func interpolate() -> void:
 	#Invoca o label aumentando a escala
 	var _interpolate_scale_up = tween.interpolate_property(
 		self,
-		"react_scale",
+		"rect_scale",
 		Vector2(0.0, 0.0),
 		Vector2(1.0, 1.0),
 		0.3,
@@ -66,7 +66,7 @@ func interpolate() -> void:
 	#Diminui a escala dele
 	var _interpolate_scale_down = tween.interpolate_property(
 		self,
-		"react_scale",
+		"rect_scale",
 		Vector2(1.0, 1.0),
 		Vector2(0.4, 0.4),
 		1.0,
