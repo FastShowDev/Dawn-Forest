@@ -16,9 +16,7 @@ func _on_CollisionArea_area_entered(area):
 	if area.get_parent() is Player:
 		var player_stats: Node = area.get_parent().get_node("Stats")
 		var player_attack: int = player_stats.base_attack + player_stats.bonus_attack
-		print(player_attack)
 		update_health(player_attack)
-		print("oi")
 	elif area is FireSpell:
 		update_health(area.spell_damage)
 		set_deferred("monitoring", false)

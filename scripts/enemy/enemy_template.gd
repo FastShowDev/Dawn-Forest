@@ -13,6 +13,7 @@ var velocity: Vector2
 var player_ref: Player = null
 var drop_list: Dictionary
 var drop_bonus: int = 1
+var attack_animation_suffix: String = "_left"
 
 export(int) var enemy_exp #5
 export(int) var speed #60
@@ -64,9 +65,11 @@ func verify_position() -> void:
 		var direction: float = sign(player_ref.global_position.x - self.global_position.x) 
 		#Sprite dos inimigos é invertida
 		if direction > 0:
+			attack_animation_suffix = "_right"
 			texture.flip_h = true
 			floor_ray.position.x = abs(raycast_default_position)
 		elif direction < 0:
+			attack_animation_suffix = "_left"
 			texture.flip_h = false
 			floor_ray.position.x = raycast_default_position
 
