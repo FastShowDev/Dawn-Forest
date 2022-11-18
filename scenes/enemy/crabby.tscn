@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/enemy/enemy_template.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/enemy/crabby/crabby.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/enemy/crabby/hit.png" type="Texture" id=5]
 [ext_resource path="res://assets/enemy/crabby/dead.png" type="Texture" id=6]
 [ext_resource path="res://assets/enemy/crabby/idle.png" type="Texture" id=7]
+[ext_resource path="res://scenes/enemy/texture.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 10, 8.5 )
@@ -22,42 +23,6 @@ extents = Vector2( 34, 6.5 )
 
 [sub_resource type="Animation" id=1]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Texture:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Texture:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ ExtResource( 5 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("EnemyAttackArea/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
 
 [sub_resource type="Animation" id=2]
 resource_name = "attack_left"
@@ -451,29 +416,34 @@ tracks/2/keys = {
 }
 
 [node name="Crabby" instance=ExtResource( 1 )]
+scale = Vector2( 0.8, 0.8 )
 script = ExtResource( 2 )
 enemy_exp = 5
 speed = 55
 gravity_speed = 350
 proximity_threshold = 20
 raycast_default_position = -16
-floating_text = null
 
 [node name="Texture" parent="." index="0"]
-texture = ExtResource( 5 )
-hframes = 4
-frame = 1
+texture = ExtResource( 7 )
+hframes = 9
+script = ExtResource( 8 )
 
 [node name="Collision" parent="." index="1"]
 visible = false
 position = Vector2( 1, 4.5 )
 shape = SubResource( 10 )
 
+[node name="DetectionArea" parent="." index="2"]
+collision_mask = 4
+
 [node name="CollisionShape2D" parent="DetectionArea" index="0"]
 position = Vector2( 0, -2.5 )
 shape = SubResource( 11 )
 
 [node name="CollisionArea" parent="." index="3"]
+collision_layer = 0
+collision_mask = 4
 health = 8
 invulnerability_timer = 1.3
 
