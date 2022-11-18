@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/enemy/crabby/hit.png" type="Texture" id=5]
 [ext_resource path="res://assets/enemy/crabby/dead.png" type="Texture" id=6]
 [ext_resource path="res://assets/enemy/crabby/idle.png" type="Texture" id=7]
-[ext_resource path="res://scenes/enemy/texture.gd" type="Script" id=8]
+[ext_resource path="res://scripts/enemy/crabby/crabby_texture.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 10, 8.5 )
