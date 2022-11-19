@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://resources/floor.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/enviroment/background.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/enemy/whale.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/interface/general/hud.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/enemy/crabby.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/enemy/pink_star.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -45,6 +46,7 @@ tile_data = PoolIntArray( 720896, 0, 0, 720897, 0, 0, 720899, 0, 0, 720902, 1, 0
 [node name="Background" parent="." instance=ExtResource( 2 )]
 
 [node name="Mask" parent="." instance=ExtResource( 5 )]
+visible = false
 color = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
@@ -60,5 +62,8 @@ position = Vector2( 232, 181 )
 
 [node name="Crabby" parent="Enemy" instance=ExtResource( 10 )]
 position = Vector2( 486, 181 )
+
+[node name="PinkStar" parent="Enemy" instance=ExtResource( 11 )]
+position = Vector2( 405, 306 )
 
 [node name="HUD" parent="." instance=ExtResource( 9 )]

@@ -84,6 +84,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/enemy/pinkstar/pink_star.gd"
 }, {
+"base": "EnemyTexture",
+"class": "PinkStarTexture",
+"language": "GDScript",
+"path": "res://scripts/enemy/pinkstar/pink_star_texture.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -125,6 +130,7 @@ _global_script_class_icons={
 "Level": "",
 "PhysicItem": "",
 "PinkStar": "",
+"PinkStarTexture": "",
 "Player": "",
 "PlayerStats": "",
 "PlayerTexture": "",
