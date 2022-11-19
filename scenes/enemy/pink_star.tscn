@@ -517,3 +517,10 @@ anims/run = SubResource( 6 )
 position = Vector2( -16, 0 )
 enabled = true
 cast_to = Vector2( 0, 20 )
+
+[node name="EnemyBar" parent="." index="7"]
+margin_left = -17.0
+margin_top = -25.0
+margin_right = -17.0
+margin_bottom = -25.0
+rect_scale = Vector2( 0.5, 0.5 )

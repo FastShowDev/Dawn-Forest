@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/enemy/detection_area.gd" type="Script" id=1]
 [ext_resource path="res://scripts/enemy/enemy_template.gd" type="Script" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://scripts/enemy/collision_area.gd" type="Script" id=4]
 [ext_resource path="res://scripts/enemy/enemy_attack_area.gd" type="Script" id=5]
 [ext_resource path="res://scenes/enviroment/floating_text.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/enemy/general/health_bar.png" type="Texture" id=7]
+[ext_resource path="res://assets/enemy/general/enemy_health_bar_background.png" type="Texture" id=8]
+[ext_resource path="res://scripts/enemy/enemy_bar.gd" type="Script" id=9]
 
 [node name="EnemyTemplate" type="KinematicBody2D"]
 collision_layer = 8
@@ -33,6 +36,7 @@ collision_layer = 0
 collision_mask = 4
 script = ExtResource( 4 )
 enemy = NodePath("..")
+enemy_bar = NodePath("../EnemyBar")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
 
@@ -48,6 +52,28 @@ script = ExtResource( 5 )
 [node name="Animation" type="AnimationPlayer" parent="."]
 
 [node name="FloorCast" type="RayCast2D" parent="."]
+
+[node name="EnemyBar" type="Control" parent="."]
+margin_left = -32.0
+margin_top = -22.0
+margin_right = -32.0
+margin_bottom = -22.0
+script = ExtResource( 9 )
+
+[node name="BarBackground" type="TextureRect" parent="EnemyBar"]
+margin_right = 64.0
+margin_bottom = 17.0
+texture = ExtResource( 8 )
+
+[node name="HealthBar" type="TextureProgress" parent="EnemyBar/BarBackground"]
+margin_left = 4.0
+margin_top = 7.0
+margin_right = 60.0
+margin_bottom = 9.0
+value = 100.0
+texture_progress = ExtResource( 7 )
+
+[node name="Tween" type="Tween" parent="EnemyBar"]
 
 [connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="_on_DetectionArea_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="_on_DetectionArea_body_exited"]

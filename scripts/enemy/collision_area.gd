@@ -2,10 +2,15 @@ extends Area2D
 class_name CollisionArea
 
 onready var timer: Timer = get_node("Timer")
-export(NodePath) onready var enemy = get_node(enemy) as KinematicBody2D
 
 export(int) var health
 export(float) var invulnerability_timer
+export(NodePath) onready var enemy = get_node(enemy) as KinematicBody2D
+export(NodePath) onready var enemy_bar = get_node(enemy_bar) as Control
+
+func _ready() -> void:
+	enemy_bar.init_bar(health)
+
 
 func _on_CollisionArea_area_entered(area):
 	if area.get_parent() is Player:
@@ -21,6 +26,7 @@ func _on_CollisionArea_area_entered(area):
 
 func update_health(damage: int) -> void:
 	health -= damage
+	enemy_bar.update_bar(health)
 	enemy.spawn_floating_text("-", "Damage", damage)
 	print("Vida atual do inimigo: " + str(health))
 	if health <= 0:
