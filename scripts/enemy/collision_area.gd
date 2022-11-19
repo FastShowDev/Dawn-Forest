@@ -31,5 +31,5 @@ func update_health(damage: int) -> void:
 
 
 func _on_Timer_timeout():
-	set_deferred("monitoring", true)
+	self.set_deferred("monitoring", true)
 	print("Pode tomar dano mágico")
