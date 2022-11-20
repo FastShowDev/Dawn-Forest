@@ -44,9 +44,10 @@ func _on_InteractionArea_body_exited(_body: Player):
 	
 func _process(_delta: float) -> void:
 	if player_ref != null and Input.is_action_just_pressed("interact"):
-		#Emitir sinal
+		get_tree().call_group("inventory", "update_slot", item_name, item_texture, item_info_list)
 		spawn_effect()
 		queue_free()
+		
 func spawn_effect() -> void:
 	var collect_effect: EffectTemplate = COLLECT_EFFECT.instance()
 	get_tree().root.call_deferred("add_child", collect_effect)
