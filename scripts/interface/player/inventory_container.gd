@@ -85,20 +85,31 @@ func update_slot(item_name:String, item_image:StreamTexture, item_info:Array) ->
 			var current_amount:int = item_slot.amount + item_info[4]
 			if current_amount > 9:
 				var leftover: int = current_amount - 9
-				item_info[3] = 9 - item_slot.amount
+				item_info[4] = 9 - item_slot.amount
 				item_slot.update_item(item_name, item_image, item_info)
-				item_info[3] = leftover
+				item_info[4] = leftover
+				update_slot(item_name, item_image, item_info)
+			
+				return
+			item_slot.update_item(item_name, item_image, item_info)
+			return
+	#Item existe e já tem 9 stacks em um slot - adiciona em outro slot mais próximo disponível:
+	var aux_item_index: int = slot_list.find_last(item_name)
+	if aux_item_index != -1:
+		var item_slot: TextureRect = slot_container.get_child(aux_item_index)
+		if item_slot.amount < 9 and item_slot.item_type != "Equipament" and item_slot.item_type != "Weapon":
+			var current_amount:int = item_slot.amount + item_info[4]
+			if current_amount > 9:
+				var leftover: int = current_amount - 9
+				item_info[4] = 9 - item_slot.amount
+				item_slot.update_item(item_name, item_image, item_info)
+				item_info[4] = leftover
 				update_slot(item_name, item_image, item_info)
 			
 				return
 			item_slot.update_item(item_name, item_image, item_info)
 			return
 			
-	var aux_item_index: int = slot_list.find_last(item_name)
-	if aux_item_index != -1:
-		var item_slot: TextureRect = slot_container.get_child(aux_item_index)
-		if item_slot.amount < 9 and item_slot.item_type != "Equipament" and item_slot.item_type != "Weapon":
-			item_slot.update_item(item_name, item_image, item_info)
 	#Item não existe no inventário
 	for index in slot_container.get_child_count():
 		var slot: TextureRect = slot_container.get_child(index)
