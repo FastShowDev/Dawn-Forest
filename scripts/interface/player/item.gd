@@ -80,6 +80,14 @@ func update_item(item: String, item_image: StreamTexture, item_info: Array) -> v
 		item_texture .show()
 		return
 
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_released("click") and can_click and item_name != "":
+		emit_signal("item_clicked", item_index)
+		modulate.a = 0.2
+		yield(get_tree().create_timer(0.1), "timeout")
+		modulate.a = 0.5
+
 func update_slot() -> void:
 	item_amount.hide()
 	item_texture.hide()
@@ -95,7 +103,12 @@ func update_slot() -> void:
 	emit_signal("empty_slot", item_index)
 
 
-
+func update_amount(value:int) -> void:
+	var new_amount:int = amount - value
+	item_amount.text = str(new_amount)
+	amount = new_amount
+	if new_amount == 0:
+		update_slot()
 
 	
 	
