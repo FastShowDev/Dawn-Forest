@@ -107,6 +107,7 @@ func equip_item() -> void:
 				sell_price
 			]
 		)
+		
 	if item_type == "Equipament":
 		get_tree().call_group(
 			"equipment_container",
@@ -134,7 +135,8 @@ func equip_item() -> void:
 				sell_price
 			]
 		)
-	
+		
+	update_slot()
 
 
 func update_slot() -> void:
