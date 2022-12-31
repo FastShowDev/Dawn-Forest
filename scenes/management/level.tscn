@@ -48,7 +48,7 @@ visible = false
 color = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
-position = Vector2( 718, 149 )
+position = Vector2( 681, 143 )
 
 [node name="Enviroment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
