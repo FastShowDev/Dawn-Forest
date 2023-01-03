@@ -134,6 +134,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/player/player_texture.gd"
 }, {
+"base": "TextureRect",
+"class": "WeaponContainer",
+"language": "GDScript",
+"path": "res://scripts/interface/player/weapon_background.gd"
+}, {
 "base": "EnemyTemplate",
 "class": "Whale",
 "language": "GDScript",
@@ -170,6 +175,7 @@ _global_script_class_icons={
 "Player": "",
 "PlayerStats": "",
 "PlayerTexture": "",
+"WeaponContainer": "",
 "Whale": "",
 "WhaleTexture": ""
 }
