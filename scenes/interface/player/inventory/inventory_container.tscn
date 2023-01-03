@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/interface/intentory/inventory_text_background.png" type="Texture" id=1]
 [ext_resource path="res://assets/interface/intentory/inventory_text.png" type="Texture" id=2]
@@ -8,9 +8,6 @@
 [ext_resource path="res://assets/interface/intentory/aux_background.png" type="Texture" id=6]
 [ext_resource path="res://assets/interface/intentory/text/equip_text.png" type="Texture" id=7]
 [ext_resource path="res://assets/interface/intentory/text/delete_text.png" type="Texture" id=8]
-
-[sub_resource type="Animation" id=3]
-length = 0.001
 
 [sub_resource type="Animation" id=4]
 resource_name = "hide_container"
@@ -25,7 +22,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 100, 110 ), Vector2( 100, 60 ) ]
+"values": [ Vector2( 70, 75 ), Vector2( 70, 20 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:visible")
@@ -65,7 +62,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 100, 60 ), Vector2( 100, 110 ) ]
+"values": [ Vector2( 70, 20 ), Vector2( 70, 75 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:visible")
@@ -90,69 +87,6 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=6]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("VContainer:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("VContainer:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Container:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Container:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Container:rect_position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 110, 60 ) ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -192,7 +126,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ true, true ]
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -236,24 +170,31 @@ tracks/2/keys = {
 }
 
 [node name="InventoryContainer" type="Control" groups=["inventory"]]
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 5 )
-
-[node name="Container" type="TextureRect" parent="."]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -50.0
-margin_top = -30.0
-margin_right = 70.0
-margin_bottom = 30.0
+margin_left = -130.0
+margin_top = -70.0
+margin_right = 130.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 260, 120 )
+script = ExtResource( 5 )
+
+[node name="Container" type="TextureRect" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -60.0
+margin_top = -40.0
+margin_right = 60.0
+margin_bottom = 20.0
 texture = ExtResource( 6 )
 
 [node name="Animation" type="AnimationPlayer" parent="Container"]
-anims/RESET = SubResource( 3 )
 anims/hide_container = SubResource( 4 )
 anims/show_container = SubResource( 5 )
 
@@ -281,14 +222,15 @@ texture = ExtResource( 8 )
 
 [node name="VContainer" type="VBoxContainer" parent="."]
 visible = false
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.502778
 anchor_right = 0.5
 anchor_bottom = 0.502778
-margin_left = -128.0
-margin_top = -58.5
-margin_right = 128.0
-margin_bottom = 58.5
+margin_left = -130.0
+margin_top = -60.3334
+margin_right = 126.0
+margin_bottom = 56.6666
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -550,6 +492,5 @@ margin_right = 212.0
 margin_bottom = 68.0
 
 [node name="Animation" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 6 )
 anims/hide_container = SubResource( 7 )
 anims/show_container = SubResource( 2 )
