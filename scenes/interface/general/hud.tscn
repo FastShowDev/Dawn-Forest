@@ -10,9 +10,11 @@
 script = ExtResource( 2 )
 
 [node name="InventoryContainer" parent="." instance=ExtResource( 3 )]
+mouse_filter = 0
 
 [node name="StatsContainer" parent="." groups=["stats_hud"] instance=ExtResource( 5 )]
 
 [node name="BarContainer" parent="." instance=ExtResource( 1 )]
 
 [node name="EquipamentContainer" parent="." groups=["equipment_container"] instance=ExtResource( 4 )]
+mouse_filter = 0

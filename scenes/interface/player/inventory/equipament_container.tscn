@@ -102,6 +102,7 @@ margin_top = -49.0
 margin_right = 49.0
 margin_bottom = -5.0
 rect_min_size = Vector2( 44, 44 )
+mouse_filter = 2
 script = ExtResource( 3 )
 
 [node name="ConsumableBackground" type="TextureRect" parent="."]

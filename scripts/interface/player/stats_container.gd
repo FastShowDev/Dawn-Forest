@@ -18,8 +18,8 @@ func update_bonus_stats(bonus_dict: Dictionary, state: bool) -> void:
 	
 #Esconde a interface
 func reset() -> void:
-	left_container.reset()
-	right_container.reset()
+	#left_container.reset()
+	#right_container.reset()
 	pass
 	
 
