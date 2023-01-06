@@ -35,10 +35,12 @@ func _ready() -> void:
 func _on_Item_mouse_entered():
 	can_click = true
 	modulate.a = 0.5
+	print("Entrou mouse")
 
 func _on_Item_mouse_exited():
 	can_click = false
 	modulate.a = 1.0
+	print("Saiuu")
 
 
 func update_item(item: String, item_image: StreamTexture, item_info: Array) -> void:
@@ -161,7 +163,7 @@ func update_amount(value:int) -> void:
 	if new_amount == 0:
 		update_slot()
 
+func reset() -> void:
+	modulate.a = 1.0
+	can_click = false
 	
-	
-	
-
