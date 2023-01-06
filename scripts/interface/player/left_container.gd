@@ -22,6 +22,7 @@ func mouse_interaction(state: String, container: HBoxContainer) -> void:
 	match state:
 		"entered":
 			container.modulate.a = 0.5
+			stats_info.play_animation("show_container")
 			match container.name:
 				"HealthContainer":
 					update_stats_info_container("health")
