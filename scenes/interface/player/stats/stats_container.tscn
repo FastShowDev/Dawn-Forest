@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://assets/interface/stats/background/left_stats_background.png" type="Texture" id=1]
 [ext_resource path="res://assets/font/thaleah_fat.ttf" type="DynamicFontData" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://assets/interface/stats/text/avaliable_points.png" type="Texture" id=20]
 [ext_resource path="res://assets/interface/stats/text/knight_class_text.png" type="Texture" id=21]
 [ext_resource path="res://scripts/interface/player/stats_container.gd" type="Script" id=22]
+[ext_resource path="res://scripts/interface/player/left_container.gd" type="Script" id=23]
 
 [sub_resource type="Animation" id=5]
 resource_name = "hide_container"
@@ -203,10 +204,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ true, true ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath(".:mouse_filter")
@@ -222,7 +223,6 @@ tracks/2/keys = {
 }
 
 [node name="StatsContainer" type="Control"]
-visible = false
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -334,6 +334,8 @@ margin_top = -138.0
 margin_right = 106.0
 margin_bottom = -10.0
 texture = ExtResource( 1 )
+script = ExtResource( 23 )
+stats_info = NodePath("../StatsInfo")
 
 [node name="GridContainer" type="GridContainer" parent="LeftContainer"]
 anchor_left = 0.5
