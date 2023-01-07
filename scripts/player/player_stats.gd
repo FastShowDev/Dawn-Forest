@@ -79,7 +79,47 @@ func update_stats(stat: String) -> void:
 			base_defense += 1
 	
 	update_stats_hud()
-	
+
+
+func update_bonus_stats(stat: String, value: int, reset: bool) -> void:
+	match stat:
+		"Health":
+			if reset:
+				bonus_health -= value
+			else:
+				bonus_health += value
+				
+			max_health = bonus_health + base_health
+			get_tree().call_group("bar_container", "increase_max_value", "Health", max_health, current_health)
+			
+		"Mana":
+			if reset:
+				bonus_mana -= value
+			else:
+				bonus_mana += value
+			
+			max_mana = bonus_mana + base_mana
+			get_tree().call_group("bar_container", "increase_max_value", "Mana", max_mana, current_mana)
+			
+		"Attack":
+			if reset:
+				bonus_attack -= value
+			else:
+				bonus_attack += value
+			
+		"Magic Attack":
+			if reset:
+				bonus_magic_attack -= value
+			else:
+				bonus_magic_attack += value
+			
+		"Defense":
+			if reset:
+				bonus_defense -= value
+			else:
+				bonus_defense += value
+				
+	update_stats_hud()
 
 func update_stats_hud() -> void:
 	get_tree().call_group(
@@ -122,6 +162,7 @@ func on_level_up() -> void:
 	current_mana = base_mana + bonus_mana
 	current_health = base_health + bonus_health
 	
+	get_tree().call_group("stats_hud", "update_avaliable_points")
 	get_tree().call_group("bar_container", "update_bar", "ManaBar", current_mana)
 	get_tree().call_group("bar_container", "update_bar", "HealthBar", current_health)
 	
