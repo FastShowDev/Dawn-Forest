@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://assets/interface/stats/background/left_stats_background.png" type="Texture" id=1]
 [ext_resource path="res://assets/font/thaleah_fat.ttf" type="DynamicFontData" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://scripts/interface/player/left_container.gd" type="Script" id=23]
 [ext_resource path="res://scripts/interface/player/stats_info.gd" type="Script" id=24]
 [ext_resource path="res://scripts/interface/player/right_container.gd" type="Script" id=25]
+[ext_resource path="res://scripts/interface/player/points_info.gd" type="Script" id=26]
 
 [sub_resource type="Animation" id=5]
 resource_name = "hide_container"
@@ -290,6 +291,7 @@ margin_top = -48.0
 margin_right = -22.0
 margin_bottom = 32.0
 texture = ExtResource( 17 )
+script = ExtResource( 26 )
 
 [node name="Text" type="TextureRect" parent="PointsInfo"]
 anchor_left = 0.5
@@ -629,7 +631,7 @@ margin_right = 83.0
 margin_bottom = 14.0
 texture = ExtResource( 13 )
 
-[node name="Plus" type="TextureButton" parent="RightContainer/VContainer/MagicAttackContainer/VContainer"]
+[node name="Plus" type="TextureButton" parent="RightContainer/VContainer/MagicAttackContainer"]
 margin_left = 87.0
 margin_right = 103.0
 margin_bottom = 16.0
