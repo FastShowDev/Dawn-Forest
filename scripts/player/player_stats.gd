@@ -52,7 +52,55 @@ func _ready():
 	max_health = current_health
 	
 	get_tree().call_group("bar_container", "init_bar", max_health, max_mana, level_dict[str(level)])
+	update_stats_hud()
 
+func update_stats(stat: String) -> void:
+	match stat:
+		"Attack":
+			base_attack += 1
+			
+		"Mana":
+			base_mana += 1
+			max_mana += 1
+			current_mana += 1
+			
+			get_tree().call_group("bar_container", "increase_max_value", "Mana", max_mana, current_mana)
+			
+		"Health":
+			base_health += 1
+			max_health += 1
+			current_health += 1
+			get_tree().call_group("bar_container", "increase_max_value", "Health", max_health, current_health)
+			
+		"Magic Attack":
+			base_magic_attack += 1
+			
+		"Defense":
+			base_defense += 1
+	
+	update_stats_hud()
+	
+
+func update_stats_hud() -> void:
+	get_tree().call_group(
+		"stats_hud", 
+		"update_stats", 
+		[
+			base_health,
+			base_mana,
+			base_attack,
+			base_magic_attack,
+			base_defense
+			
+		],
+		[
+			bonus_health,
+			bonus_mana,
+			bonus_attack,
+			bonus_magic_attack,
+			bonus_defense	
+		]
+	)
 
 func update_exp(value: int) -> void:
 	current_exp += value

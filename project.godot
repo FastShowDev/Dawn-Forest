@@ -139,6 +139,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/player/player_texture.gd"
 }, {
+"base": "TextureRect",
+"class": "PointsInfo",
+"language": "GDScript",
+"path": "res://scripts/interface/player/points_info.gd"
+}, {
 "base": "Control",
 "class": "StatsContainer",
 "language": "GDScript",
@@ -201,6 +206,7 @@ _global_script_class_icons={
 "Player": "",
 "PlayerStats": "",
 "PlayerTexture": "",
+"PointsInfo": "",
 "StatsContainer": "",
 "StatsInfo": "",
 "StatsLeftContainer": "",
