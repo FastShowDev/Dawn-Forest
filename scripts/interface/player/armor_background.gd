@@ -36,6 +36,8 @@ func update_armor_slot(item_texture: StreamTexture, item_info: Array) -> void:
 	armor_price = item_info[4]
 	
 	armor_item.show()
+	
+	get_tree().call_group("stats_hud", "update_bonus_stats", armor_dictionary, false)	
 		
 		
 func reset() -> void:
@@ -47,7 +49,4 @@ func reset() -> void:
 	armor_item.texture = null
 	
 	armor_dictionary = {}
-	
-	#Resetar status que a armadura dá
-	pass
 	
