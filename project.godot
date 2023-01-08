@@ -222,6 +222,10 @@ config/name="Dawn-Forest"
 run/main_scene="res://scenes/management/level.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+data_management="*res://scripts/management/data_management.gd"
+
 [display]
 
 window/size/width=320
