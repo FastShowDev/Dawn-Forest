@@ -36,7 +36,9 @@ func update_weapon_slot(item_texture: StreamTexture, item_info: Array) -> void:
 	weapon_price = item_info[4]
 	
 	weapon_item.show()
+	
 	#Atualizar os atributos do equipamento para os status do player
+	get_tree().call_group("stats_hud", "update_bonus_stats", weapon_dictionary, false)
 	
 		
 func reset() -> void:

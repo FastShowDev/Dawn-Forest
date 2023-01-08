@@ -22,7 +22,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 70, 75 ), Vector2( 70, 20 ) ]
+"values": [ Vector2( 100, 105 ), Vector2( 100, 50 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:visible")
@@ -62,7 +62,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 70, 20 ), Vector2( 70, 75 ) ]
+"values": [ Vector2( 100, 50 ), Vector2( 100, 105 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:visible")
@@ -154,7 +154,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ false, true ]
+"values": [ true, true ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("VContainer:visible")
@@ -174,11 +174,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -130.0
-margin_top = -70.0
-margin_right = 130.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 260, 120 )
+margin_left = -160.0
+margin_top = -90.0
+margin_right = 160.0
+margin_bottom = 90.0
+mouse_filter = 2
 script = ExtResource( 5 )
 
 [node name="Container" type="TextureRect" parent="."]
@@ -221,19 +221,15 @@ margin_bottom = 6.0
 texture = ExtResource( 8 )
 
 [node name="VContainer" type="VBoxContainer" parent="."]
-visible = false
 modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
-anchor_top = 0.502778
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.502778
-margin_left = -130.0
-margin_top = -60.3334
-margin_right = 126.0
-margin_bottom = 56.6666
-__meta__ = {
-"_edit_use_anchors_": true
-}
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -58.5
+margin_right = 128.0
+margin_bottom = 58.5
 
 [node name="HContainer" type="HBoxContainer" parent="VContainer"]
 margin_right = 256.0
