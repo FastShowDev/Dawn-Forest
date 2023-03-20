@@ -158,3 +158,13 @@ func spawn_spell() -> void:
 	spell.spell_damage = stats.base_magic_attack + stats.bonus_magic_attack
 	spell.global_position = self.global_position + spell_offset
 	get_tree().root.call_deferred("add_child", spell)
+
+
+func _exit_tree() -> void:
+	
+	if dead:
+		return
+	
+	data_management.data_dictionary.player_position = global_position
+	data_management.save_data()
+	print("Saiu do jogo")
