@@ -7,6 +7,9 @@ var data_dictionary: Dictionary = {
 	"current_exp" : 0,
 	"current_level": 1,
 	
+	"current_health" : 15,
+	"current_mana" : 10,
+	
 	"player_texture": "",
 	"player_position": initial_position
 }

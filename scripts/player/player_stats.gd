@@ -45,21 +45,30 @@ var level_dict: Dictionary = {
 
 
 func _ready():
+	current_mana = base_mana + bonus_mana
+	max_mana = base_mana + bonus_mana
+	
+	current_health = base_health + bonus_health
+	max_health = base_health + bonus_health
+		
 	var file: File = File.new()
 	if file.file_exists(data_management.save_path):
 		data_management.load_data()
 		level = data_management.data_dictionary.current_level
 		current_exp = data_management.data_dictionary.current_exp
 		
+		current_mana = data_management.data_dictionary.current_mana
+		current_health = data_management.data_dictionary.current_health
+		
 		get_tree().call_group("bar_container", "reset_exp_bar", level_dict[str(level)], current_exp)
+		get_tree().call_group("bar_container", "init_bar", max_health, max_mana, level_dict[str(level)])
+		
+		get_tree().call_group("bar_container", "update_bar", "ManaBar", current_mana)
+		get_tree().call_group("bar_container", "update_bar", "HealthBar", current_health)
+		
+	else:
+		get_tree().call_group("bar_container", "init_bar", max_health, max_mana, level_dict[str(level)])
 	
-	current_mana = base_mana + bonus_mana
-	max_mana = current_mana
-	
-	current_health = base_health + bonus_health
-	max_health = current_health
-	
-	get_tree().call_group("bar_container", "init_bar", max_health, max_mana, level_dict[str(level)])
 	update_stats_hud()
 
 
@@ -199,7 +208,9 @@ func update_health(type: String, value: int) -> void:
 			else:
 				player.on_hit = true
 				player.attacking = false
-				
+	
+	data_management.data_dictionary.current_health = current_health
+	data_management.save_data()
 	get_tree().call_group("bar_container", "update_bar", "HealthBar", current_health)
 	
 func verify_shield(value: int) -> void:
@@ -223,6 +234,9 @@ func update_mana(type: String, value: int) -> void:
 		"Decrease":
 			current_mana -= value 
 			spawn_floating_text("-", "Mana", value)
+			
+	data_management.data_dictionary.current_mana = current_mana
+	data_management.save_data()
 	get_tree().call_group("bar_container", "update_bar", "ManaBar", current_mana)
 	
 	
