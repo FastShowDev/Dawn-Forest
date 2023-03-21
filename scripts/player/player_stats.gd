@@ -45,6 +45,14 @@ var level_dict: Dictionary = {
 
 
 func _ready():
+	var file: File = File.new()
+	if file.file_exists(data_management.save_path):
+		data_management.load_data()
+		level = data_management.data_dictionary.current_level
+		current_exp = data_management.data_dictionary.current_exp
+		
+		get_tree().call_group("bar_container", "reset_exp_bar", level_dict[str(level)], current_exp)
+	
 	current_mana = base_mana + bonus_mana
 	max_mana = current_mana
 	
@@ -53,6 +61,7 @@ func _ready():
 	
 	get_tree().call_group("bar_container", "init_bar", max_health, max_mana, level_dict[str(level)])
 	update_stats_hud()
+
 
 func update_stats(stat: String) -> void:
 	match stat:
@@ -146,13 +155,19 @@ func update_exp(value: int) -> void:
 	current_exp += value
 	spawn_floating_text("+", "Exp", value)
 	get_tree().call_group("bar_container", "update_bar", "ExpBar", current_exp)
+	
 	if current_exp >= level_dict[str(level)] and level < 9:
 		var leftover: int = current_exp - level_dict[str(level)]
 		current_exp = leftover
 		on_level_up()
 		level += 1
+		data_management.data_dictionary.current_level = level
+		
 	elif current_exp >= level_dict[str(level)] and level == 9:
 		current_exp = level_dict[str(level)]
+	
+	data_management.data_dictionary.current_exp = current_exp
+	data_management.save_data()
 
 
 func on_level_up() -> void:

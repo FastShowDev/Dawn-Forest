@@ -4,6 +4,9 @@ var save_path: String = "user://save.dat"
 var initial_position: Vector2 = Vector2(700, 160)
 
 var data_dictionary: Dictionary = {
+	"current_exp" : 0,
+	"current_level": 1,
+	
 	"player_texture": "",
 	"player_position": initial_position
 }
