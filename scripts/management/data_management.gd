@@ -11,7 +11,15 @@ var data_dictionary: Dictionary = {
 	"current_mana" : 10,
 	
 	"player_texture": "",
-	"player_position": initial_position
+	"player_position": initial_position,
+	
+	"base_stats": [
+		15, #Health
+		10, #Mana
+		5,  #Attack
+		3,  #MagicAttack
+		1   #Defense
+	]
 }
 
 

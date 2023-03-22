@@ -45,12 +45,6 @@ var level_dict: Dictionary = {
 
 
 func _ready():
-	current_mana = base_mana + bonus_mana
-	max_mana = base_mana + bonus_mana
-	
-	current_health = base_health + bonus_health
-	max_health = base_health + bonus_health
-		
 	var file: File = File.new()
 	if file.file_exists(data_management.save_path):
 		data_management.load_data()
@@ -59,6 +53,8 @@ func _ready():
 		
 		current_mana = data_management.data_dictionary.current_mana
 		current_health = data_management.data_dictionary.current_health
+		
+		update_stats_with_serialized_data()
 		
 		get_tree().call_group("bar_container", "reset_exp_bar", level_dict[str(level)], current_exp)
 		get_tree().call_group("bar_container", "init_bar", max_health, max_mana, level_dict[str(level)])
@@ -71,7 +67,16 @@ func _ready():
 	
 	update_stats_hud()
 
-
+func update_stats_with_serialized_data() -> void:
+	var base_stats: Array = data_management.data_dictionary.base_stats
+	
+	base_health = base_stats[0]
+	base_mana = base_stats[1]
+	
+	max_mana = base_mana + bonus_mana
+	max_health = base_health + bonus_health
+	
+	
 func update_stats(stat: String) -> void:
 	match stat:
 		"Attack":
@@ -159,6 +164,15 @@ func update_stats_hud() -> void:
 			bonus_defense	
 		]
 	)
+	
+	data_management.data_dictionary.base_stats = [
+		base_health,
+		base_mana,
+		base_attack,
+		base_magic_attack,
+		base_defense
+	]
+	data_management.save_data()
 
 func update_exp(value: int) -> void:
 	current_exp += value

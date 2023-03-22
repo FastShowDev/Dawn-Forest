@@ -10,6 +10,14 @@ func _ready() -> void:
 	player.global_position = data_management.data_dictionary.player_position
 
 func on_game_over() -> void:
+	data_management.data_dictionary.base_stats = [
+		15,
+		10,
+		5,
+		3,
+		1
+	]
+	
 	data_management.data_dictionary.current_exp = 0
 	data_management.data_dictionary.current_level = 1
 	data_management.data_dictionary.current_mana = 10
