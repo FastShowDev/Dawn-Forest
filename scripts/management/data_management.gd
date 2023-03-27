@@ -19,7 +19,9 @@ var data_dictionary: Dictionary = {
 		5,  #Attack
 		3,  #MagicAttack
 		1   #Defense
-	]
+	],
+	
+	"available_points" : 0,
 }
 
 
