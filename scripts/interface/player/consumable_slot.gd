@@ -14,6 +14,19 @@ var consumable_item_type_value: int
 
 var can_click : bool = false
 
+
+func _ready() -> void:
+	var file: File = File.new()
+	if file.file_exists(data_management.save_path):
+		data_management.load_data()
+		
+		if data_management.data_dictionary.consumable_container.empty():
+			return
+			
+		var data:Array = data_management.data_dictionary.consumable_container
+		var item_texture: StreamTexture = load(data[0])
+		update_consumable_slot(item_texture, data)
+
 func _process(delta:float) -> void:
 	if Input.is_action_just_pressed("click") and can_click:
 		if consumable_item_amount > 0:
@@ -24,6 +37,15 @@ func _process(delta:float) -> void:
 					get_tree().call_group("player_stats", "update_mana", "Increase", consumable_item_type_value)
 					
 			consumable_item_amount -= 1
+			data_management.data_dictionary.consumable_container = [
+				consumable_texture_path,
+				consumable_item_amount,
+				consumable_item_name,
+				consumable_item_type,
+				consumable_item_type_value,
+				consumable_item_price,
+			]
+			data_management.save_data()
 			
 			if consumable_item_amount == 0:
 				reset()
@@ -86,7 +108,10 @@ func update_consumable_slot(item_texture: StreamTexture, item_info: Array) -> vo
 	consumable_amount.text = str(consumable_item_amount)
 	consumable_item.texture = item_texture
 	consumable_amount.show()
-
+	
+	data_management.data_dictionary.consumable_container = item_info
+	data_management.save_data()
+	
 
 func _on_ConsumableBackground_mouse_entered():
 	can_click = true
@@ -108,5 +133,8 @@ func reset() -> void:
 	
 	consumable_amount.hide()
 	consumable_item.texture = null
+	
+	data_management.data_dictionary.consumable_container = []
+	data_management.save_data()
 	
 

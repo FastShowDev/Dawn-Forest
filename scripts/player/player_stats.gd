@@ -45,15 +45,41 @@ var level_dict: Dictionary = {
 
 
 func _ready():
-	current_mana = base_mana + bonus_mana
-	max_mana = current_mana
+	var file: File = File.new()
+	if file.file_exists(data_management.save_path):
+		data_management.load_data()
+		level = data_management.data_dictionary.current_level
+		current_exp = data_management.data_dictionary.current_exp
+		
+		current_mana = data_management.data_dictionary.current_mana
+		current_health = data_management.data_dictionary.current_health
+		
+		update_stats_with_serialized_data()
+		
+		get_tree().call_group("bar_container", "reset_exp_bar", level_dict[str(level)], current_exp)
+		get_tree().call_group("bar_container", "init_bar", max_health, max_mana, level_dict[str(level)])
+		
+		get_tree().call_group("bar_container", "update_bar", "ManaBar", current_mana)
+		get_tree().call_group("bar_container", "update_bar", "HealthBar", current_health)
+		
+	else:
+		get_tree().call_group("bar_container", "init_bar", max_health, max_mana, level_dict[str(level)])
 	
-	current_health = base_health + bonus_health
-	max_health = current_health
-	
-	get_tree().call_group("bar_container", "init_bar", max_health, max_mana, level_dict[str(level)])
 	update_stats_hud()
 
+func update_stats_with_serialized_data() -> void:
+	var base_stats: Array = data_management.data_dictionary.base_stats
+	
+	base_health = base_stats[0]
+	base_mana = base_stats[1]
+	base_attack = base_stats[2]
+	base_magic_attack = base_stats[3]
+	base_defense = base_stats[4]
+	
+	max_mana = base_mana + bonus_mana
+	max_health = base_health + bonus_health
+	
+	
 func update_stats(stat: String) -> void:
 	match stat:
 		"Attack":
@@ -141,18 +167,33 @@ func update_stats_hud() -> void:
 			bonus_defense	
 		]
 	)
+	
+	data_management.data_dictionary.base_stats = [
+		base_health,
+		base_mana,
+		base_attack,
+		base_magic_attack,
+		base_defense
+	]
+	data_management.save_data()
 
 func update_exp(value: int) -> void:
 	current_exp += value
 	spawn_floating_text("+", "Exp", value)
 	get_tree().call_group("bar_container", "update_bar", "ExpBar", current_exp)
+	
 	if current_exp >= level_dict[str(level)] and level < 9:
 		var leftover: int = current_exp - level_dict[str(level)]
 		current_exp = leftover
 		on_level_up()
 		level += 1
+		data_management.data_dictionary.current_level = level
+		
 	elif current_exp >= level_dict[str(level)] and level == 9:
 		current_exp = level_dict[str(level)]
+	
+	data_management.data_dictionary.current_exp = current_exp
+	data_management.save_data()
 
 
 func on_level_up() -> void:
@@ -184,7 +225,9 @@ func update_health(type: String, value: int) -> void:
 			else:
 				player.on_hit = true
 				player.attacking = false
-				
+	
+	data_management.data_dictionary.current_health = current_health
+	data_management.save_data()
 	get_tree().call_group("bar_container", "update_bar", "HealthBar", current_health)
 	
 func verify_shield(value: int) -> void:
@@ -208,6 +251,9 @@ func update_mana(type: String, value: int) -> void:
 		"Decrease":
 			current_mana -= value 
 			spawn_floating_text("-", "Mana", value)
+			
+	data_management.data_dictionary.current_mana = current_mana
+	data_management.save_data()
 	get_tree().call_group("bar_container", "update_bar", "ManaBar", current_mana)
 	
 	
