@@ -22,6 +22,11 @@ var data_dictionary: Dictionary = {
 	],
 	
 	"available_points" : 0,
+	
+	"armor_container" : [],
+	"weapon_container" : [],
+	"consumable_container" : [],
+	
 }
 
 
