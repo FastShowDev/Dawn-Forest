@@ -219,7 +219,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Dawn-Forest"
-run/main_scene="res://scenes/management/level.tscn"
+run/main_scene="res://scenes/interface/initial_screen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
